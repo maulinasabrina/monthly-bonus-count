@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>more shopping?</h1>
+        </div>
+        <div class="form">
+            <!-- label for gaji pokok -->
+            <label for="gaji-pokok">Gaji Pokok:</label>
+            <input type="number" id="gaji-pokok" name="gaji-pokok" min="0" step="1000">
+            <!-- label for bonus this month -->
+            <label for="bonus">Bonus This Month:</label>
+            <input type="number" id="bonus" name="bonus" min="0" step="1000">
+            <button id="calculate-btn">give me lot of shopping budget pls</button>
+            <div id="result"></div>
+           
+        </div>
+      
+        
+    </div>
+    <script>
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const gajiPokok = parseFloat(document.getElementById('gaji-pokok').value) || 0;
+            const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+            const total = bonus / gajiPokok * 100; // Assuming a fixed multiplier for demonstration
+            let shoppingBudget = 0; // Initialize shoppingBudget variable
+            alert(`Total: ${total}`); // Display the total for debugging purposes
+            if (total < 70) {
+                alert('No Bonus this month huhu :(, work harder next month!');
+               
+            } else if ( total >= 70 && total <= 99) {
+                shoppingBudget = bonus * 0.1; // 70% of the total
+             
+            } else if (total >= 100 && total <= 119) {
+                shoppingBudget = bonus * 0.2;
+              
+            } else if (total >= 120) {
+                shoppingBudget = bonus * 0.3;
+            
+            }
+            const savedAmount = bonus - shoppingBudget; // Assuming 20% of gajiPokok is saved
+            document.getElementById('result').textContent = `Total Shopping Budget: Rp ${shoppingBudget.toLocaleString()} + Saving: Rp ${savedAmount.toLocaleString()}`;
+        });
+    </script>
+</body>
+</html>
